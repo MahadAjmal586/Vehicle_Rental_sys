@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dark-theme.css') }}">
+    <title>Add New Vehicle</title>
+</head>
+<body>
+    <h1>Add New Vehicle</h1>
+    <form method="post">
+        <label>Name:</label><br>
+        <input type="text" name="name" required><br>
+
+        <label>Type:</label><br>
+        <input type="text" name="type" required><br>
+
+        <label>Brand:</label><br>
+        <input type="text" name="brand" required><br>
+
+        <label>Luxury:</label>
+        <input type="checkbox" name="is_luxury" value="1"><br>
+
+        <label>Price Per Day:</label><br>
+        <input type="number" step="0.01" name="price_per_day" required><br>
+
+        <label>Location ID:</label><br>
+        <input type="number" name="location_id" required><br>
+
+        <button type="submit">Add Vehicle</button>
+    </form>
+</body>
+</html>
+

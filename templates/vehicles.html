@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Vehicles</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dark-theme.css') }}">
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 90%;
+            margin: 20px auto;
+            color: #eee;
+        }
+        th, td {
+            border: 1px solid #444;
+            padding: 8px 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #222;
+        }
+        tr:nth-child(even) {
+            background-color: #333;
+        }
+        tr:hover {
+            background-color: #555;
+        }
+        .rent-button {
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h2 style="text-align:center; margin-top: 20px;">Available Vehicles</h2>
+
+    <form method="get" action="{{ url_for('vehicles') }}" style="text-align:center; margin-bottom: 20px;">
+        <input type="text" name="city" placeholder="City">
+        <input type="text" name="type" placeholder="Type">
+        <input type="text" name="brand" placeholder="Brand">
+        <button type="submit">Search</button>
+    </form>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Brand</th>
+                <th>Luxury</th>
+                <th>Price Per Day ($)</th>
+                <th>Available</th>
+                <th>Location</th>
+                {% if session['role'] == 'Customer' %}
+                <th>Action</th>
+                {% endif %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for vehicle in vehicles %}
+            <tr>
+                <td>{{ vehicle.name }}</td>
+                <td>{{ vehicle.type }}</td>
+                <td>{{ vehicle.brand or 'N/A' }}</td>
+                <td>{{ 'Yes' if vehicle.is_luxury else 'No' }}</td>
+                <td>{{ "%.2f"|format(vehicle.price_per_day) }}</td>
+                <td>{{ 'Yes' if vehicle.is_available else 'No' }}</td>
+                <td>{{ vehicle.city }}, {{ vehicle.country }}</td>
+                {% if session['role'] == 'Customer' %}
+                <td>
+                    {% if vehicle.rented_by_user %}
+                    <!-- Cancel rental button -->
+                    <form action="{{ url_for('end_rental', rental_id=vehicle.rental_id) }}" method="post" class="rent-button">
+                        <button type="submit" onclick="return confirm('Cancel this rental?')">Cancel</button>
+                    </form>
+                    {% elif vehicle.is_available %}
+                    <!-- Rent vehicle button -->
+                    <form action="{{ url_for('rent_vehicle', vehicle_id=vehicle.id) }}" method="post" class="rent-button">
+                        <button type="submit">Rent</button>
+                    </form>
+                    {% else %}
+                    Unavailable
+                    {% endif %}
+                </td>
+                {% endif %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

@@ -1,0 +1,65 @@
+/* dark-theme.css */
+
+body {
+    background-color: #121212;
+    color: #e0e0e0;
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+h2 {
+    color: #bb86fc;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+select {
+    background-color: #1e1e1e;
+    color: #e0e0e0;
+    border: 1px solid #333;
+    padding: 8px;
+    margin: 5px 0 15px 0;
+    width: 250px;
+    border-radius: 4px;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+select:focus {
+    border-color: #bb86fc;
+    outline: none;
+}
+
+button {
+    background-color: #bb86fc;
+    color: #121212;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #9a67ea;
+}
+
+p.error {
+    color: #cf6679;
+}
+
+form {
+    max-width: 300px;
+}
+
+a {
+    color: #bb86fc;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}

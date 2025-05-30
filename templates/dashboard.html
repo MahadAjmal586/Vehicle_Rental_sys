@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/dark-theme.css') }}">
+  <title>Dashboard</title>
+</head>
+<body>
+  <h2>Welcome, {{ name }} ({{ role }})</h2>
+  <a href="{{ url_for('logout') }}">Logout</a>
+</body>
+</html>
