@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard | Rental Car System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1e1e2f;
+            color: #ffffff;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .welcome {
+            margin-bottom: 30px;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background-color: #2a2a40;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
+            transition: 0.3s ease;
+        }
+
+        .card:hover {
+            background-color: #3b3b5c;
+        }
+
+        .card h2 {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            color: #bbb;
+        }
+
+        .card p {
+            font-size: 2rem;
+            color: #00ccff;
+            margin: 0;
+        }
+
+        .nav {
+            margin-bottom: 20px;
+        }
+
+        .nav a {
+            margin-right: 15px;
+            color: #00ccff;
+            text-decoration: none;
+        }
+
+        .nav a:hover {
+            text-decoration: underline;
+        }
+
+        .logout-btn {
+            float: right;
+            color: #ff6666;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="nav">
+        <a href="{{ url_for('vehicles') }}">View Vehicles</a>
+        <a href="{{ url_for('add_vehicle') }}">Add Vehicle</a> <!-- Fixed -->
+        <a class="logout-btn" href="{{ url_for('logout') }}">Logout</a>
+    </div>
+
+    <h1>Admin Dashboard</h1>
+    <div class="welcome">Welcome, <strong>{{ name }}</strong></div>
+
+    <div class="stats">
+        <div class="card">
+            <h2>Total Vehicles</h2>
+            <p>{{ total_vehicles }}</p>
+        </div>
+        <div class="card">
+            <h2>Available Vehicles</h2>
+            <p>{{ available_vehicles }}</p>
+        </div>
+        <div class="card">
+            <h2>Active Rentals</h2>
+            <p>{{ active_rentals }}</p>
+        </div>
+        <div class="card">
+            <h2>Registered Customers</h2>
+            <p>{{ total_customers }}</p>
+        </div>
+    </div>
+
+</body>
+</html>
